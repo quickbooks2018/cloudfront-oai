@@ -27,8 +27,8 @@ terraform {
 ####
 terraform {
   backend "s3" {
-    bucket = "cloudgeeksca-terraform"
-    key    = "cloudgeeksca-terraform.tfstate"
+    bucket = "cloudgeeks-terraform"
+    key    = "cloudgeeks-terraform.tfstate"
     region = "us-east-1"
   }
 }
