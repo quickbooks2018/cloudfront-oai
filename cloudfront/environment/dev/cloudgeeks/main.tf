@@ -58,10 +58,13 @@ resource "aws_cloudfront_distribution" "cloudfront" {
     viewer_protocol_policy = "redirect-to-https" # redirect-to-https # https-only # allow-all
     compress               = true
 
-    min_ttl     = 3600
-    default_ttl = 3600
-    max_ttl     = 3600
-
+    min_ttl                = 0
+    default_ttl            = 86400
+    max_ttl                = 31536000
+    compress               = true
+      
+      
+      
     forwarded_values {
       query_string = true
 
