@@ -11,6 +11,17 @@ provider "aws" {
 terraform {
   required_version = ">= 0.12"
 }
+
+### Backend ###
+# S3
+###############
+
+# Create S3 Bucket with Versioning enabled
+
+# aws s3api create-bucket --bucket cloudgeeks-terraform --region us-east-1
+
+# aws s3api put-bucket-versioning --bucket cloudgeeks-terraform --versioning-configuration Status=Enabled
+
 ####
 # S3
 ####
