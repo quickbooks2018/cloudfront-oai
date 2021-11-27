@@ -49,7 +49,7 @@ resource "aws_cloudfront_distribution" "cloudfront" {
 
   enabled             = true
   default_root_object = "index.html"
-  aliases             = ["cloudfront.cloudgeeks.ca"] # (Required) For HTTPS Requirement, must be DNS Validated & dns name must Only associated be associated with single distribution in single aws account.
+  aliases             = [ "cloudfront.cloudgeeks.ca","doosra.saqlainmushtaq.com" ] # (Required) For HTTPS Requirement, must be DNS Validated & dns name must Only associated be associated with single distribution in single aws account.
 
   default_cache_behavior {
     allowed_methods        = ["GET", "HEAD", "OPTIONS"] # "DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"
