@@ -56,7 +56,7 @@ resource "aws_cloudfront_distribution" "cloudfront" {
     cached_methods         = ["GET", "HEAD"]
     target_origin_id       = module.s3-bucket.bucket_name
     viewer_protocol_policy = "redirect-to-https" # redirect-to-https # https-only # allow-all
-    compress               = true
+  
 
     min_ttl                = 0
     default_ttl            = 86400
