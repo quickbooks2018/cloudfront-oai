@@ -37,8 +37,8 @@ terraform {
 # S3
 #####
 module "s3-bucket" {
-  source      = "../../../modules/aws-s3"   ###########
-  bucket-name = "cloudgeeks-cloudfront"     # Required
+  source      = "../../modules/aws-s3"      ###########
+  bucket-name = var.bucket-name             # Required
   versioning  = "false"                     ###########
 }
 
@@ -49,14 +49,14 @@ resource "aws_cloudfront_distribution" "cloudfront" {
 
   enabled             = true
   default_root_object = "index.html"
-  aliases             = [ "cloudfront.cloudgeeks.ca","doosra.saqlainmushtaq.com" ] # (Required) For HTTPS Requirement, must be DNS Validated & dns name must Only associated be associated with single distribution in single aws account.
+  aliases             =  var.domains  # (Required) For HTTPS Requirement, must be DNS Validated & dns name must Only associated be associated with single distribution in single aws account.
 
   default_cache_behavior {
     allowed_methods        = ["GET", "HEAD", "OPTIONS"] # "DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"
     cached_methods         = ["GET", "HEAD"]
     target_origin_id       = module.s3-bucket.bucket_name
     viewer_protocol_policy = "redirect-to-https" # redirect-to-https # https-only # allow-all
-  
+
 
     min_ttl                = 0
     default_ttl            = 86400
@@ -100,7 +100,7 @@ resource "aws_cloudfront_distribution" "cloudfront" {
 
   viewer_certificate {
     cloudfront_default_certificate = true
-    acm_certificate_arn            = "arn:aws:acm:us-east-1:YOURACCOUNTID:certificate/12345678CBA123456789" # ACM Cert Arn
+    acm_certificate_arn            = "arn:aws:acm:us-east-1:530403689073:certificate/7e217832-e917-4d47-aac1-76c9679b424a" # ACM Cert Arn
     ssl_support_method             = "sni-only"
     minimum_protocol_version       = "TLSv1.2_2021"
   }
